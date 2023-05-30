@@ -1,7 +1,6 @@
 import cv2
 import config
 from camera import motionCam
-import bot
 
 def start():
     ret, frame1 = motionCam.cap.read()
@@ -27,7 +26,6 @@ def start():
 
             if counter == 100:
                 motionCam.take_picture("/home/rdvl/Proyectos/cat-detector/data/motion.jpeg", frame1)
-                bot.send_photo("/home/rdvl/Proyectos/cat-detector/data/motion.jpeg")
                 counter += 1
             elif counter > 100:
                 counter = 0
