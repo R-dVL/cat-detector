@@ -1,3 +1,4 @@
+import config
 import telegram
 from telegram.ext.updater import Updater
 from telegram.update import Update
@@ -5,7 +6,7 @@ from telegram.ext.callbackcontext import CallbackContext
 from telegram.ext.commandhandler import CommandHandler
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
-from app.camera import motionCam, streamCam
+from camera import motionCam
 
 helpMsg = '''
 Hola, soy PumuCam, Raúl me ha diseñado con las siguientes funciones:
@@ -17,30 +18,16 @@ Hola, soy PumuCam, Raúl me ha diseñado con las siguientes funciones:
    
 3. Cuando detecte movimiento pasaré fotos del Pumardo.
 '''
-
-# Setup
-def obtainCHAT_ID():
-    with open("/home/rdvl/PumuCam/app/data/CHAT_ID") as f:
-        CHAT_ID = f.read()
-        f.close()
-    return CHAT_ID
-    
-def obtainTOKEN():
-    with open("/home/rdvl/PumuCam/app/data/TOKEN") as f:
-        TOKEN = f.read()
-        f.close()
-    return TOKEN
-    
-bot = telegram.Bot(obtainTOKEN())
-updater = Updater(obtainTOKEN(), use_context=True)
+bot = telegram.Bot(config.BOT_TOKEN)
+updater = Updater(config.BOT_TOKEN, use_context=True)
 
 # Send picture method
 def send_photo(path):
-    bot.send_photo(obtainCHAT_ID(), photo=open(path, 'rb'))
+    bot.send_photo(config.CHAT_ID, photo=open(path, 'rb'))
     
 # Send message method
 def send_message(text):
-	bot.sendMessage(obtainCHAT_ID(), text)
+	bot.sendMessage(config.CHAT_ID, text)
  
 def help(update: Update, context: CallbackContext):
     update.message.reply_text(helpMsg)
@@ -59,8 +46,7 @@ def unknown(update: Update, context: CallbackContext):
 # Response to commands introduced in chat.
 def start():
     updater.dispatcher.add_handler(CommandHandler('help', help))
-    updater.dispatcher.add_handler(CommandHandler('foto1', foto1))
-    updater.dispatcher.add_handler(CommandHandler('foto2', foto2))
+    updater.dispatcher.add_handler(CommandHandler('foto', foto))
     updater.dispatcher.add_handler(MessageHandler(Filters.command, unknown))
     updater.start_polling()
     
