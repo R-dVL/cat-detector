@@ -27,7 +27,7 @@ def start():
 
             if counter == 100:
                 motionCam.take_picture("/home/rdvl/Proyectos/cat-detector/data/motion.jpeg", frame1)
-                bot.send_foto("/home/rdvl/Proyectos/cat-detector/data/motion.jpeg")
+                bot.send_photo("/home/rdvl/Proyectos/cat-detector/data/motion.jpeg")
                 counter += 1
             elif counter > 100:
                 counter = 0
