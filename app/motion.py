@@ -23,7 +23,7 @@ def start():
             cv2.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 2)
             cv2.putText(frame1, "Status: {}".format('Puma detectado!'), (10, 20), cv2.FONT_HERSHEY_COMPLEX_SMALL,
                        1, (255, 0, 0), 3)
-                        
+
             if counter == 100:
                 motionCam.take_picture("/home/rdvl/PumuCam/app/data/motion.jpeg", frame1)
                 bot.send_photo("/home/rdvl/PumuCam/app/data/motion.jpeg")

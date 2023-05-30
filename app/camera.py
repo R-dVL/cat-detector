@@ -8,5 +8,5 @@ class Camera:
 
     def take_picture(self, path, img):
         cv2.imwrite(path, img)
-        
+
 motionCam = Camera("Motion", 1)
