@@ -1,5 +1,4 @@
 import cv2
-import config
 from camera import motionCam
 
 def start():
@@ -25,7 +24,7 @@ def start():
                        1, (255, 0, 0), 3)
 
             if counter == 100:
-                motionCam.take_picture("/home/rdvl/Proyectos/cat-detector/data/motion.jpeg", frame1)
+                motionCam.take_picture("motion.jpeg", frame1)
                 counter += 1
             elif counter > 100:
                 counter = 0

@@ -1,16 +1,16 @@
-FROM python:3.9-buster
+FROM python:latest
+#Dependencias de OpenCV
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 #Crear directorios
-RUN mkdir -p /opt/app
-RUN mkdir -p /opt/app/pip_cache
-RUN mkdir -p /opt/app/cat_detector/data
+RUN mkdir /app
 #Copiar archivos
-COPY requirements.txt /opt/app/
-COPY app /opt/app/cat_detector/
-WORKDIR /opt/app
+COPY requirements.txt start.sh /app/
+COPY app /app/
+WORKDIR /app
 #Instalar dependencias
-RUN pip install -r requirements.txt --cache-dir /opt/app/pip_cache
+RUN pip install -r requirements.txt
 #Config
 #Permisos script de inicio
-#RUN chmod 777 /opt/app/start.sh
+RUN chmod 755 /app/start.sh
 #Arrancar app
-CMD ["python3", "/opt/app/cat_detector/app/main.py"]
+CMD ["/app/start.sh"]

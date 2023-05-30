@@ -1,6 +1,5 @@
 import config
 import os
-import asyncio
 from camera import motionCam
 import telegram
 from telegram import Update
@@ -28,8 +27,8 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 # Command to take a photo and send it back
 async def foto(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     ret, frame = motionCam.cap.read()
-    motionCam.take_picture("/home/rdvl/Proyectos/cat-detector/data/foto.jpeg", frame)
-    await bot.send_photo(config.CHAT_ID, open("/home/rdvl/Proyectos/cat-detector/data/foto.jpeg", "rb"))
+    motionCam.take_picture("foto.jpeg", frame)
+    await bot.send_photo(config.CHAT_ID, open("foto.jpeg", "rb"))
 
 # Unknown commands filter
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -38,11 +37,11 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 # Escaneo cíclico en búsqueda de la foto de movimiento
 async def file_check():
     while (True):
-        file_exists = os.path.exists("/home/rdvl/Proyectos/cat-detector/data/motion.jpeg")
+        file_exists = os.path.exists("motion.jpeg")
         if (file_exists):
             async with bot:
-                await bot.send_photo(config.CHAT_ID, open("/home/rdvl/Proyectos/cat-detector/data/motion.jpeg", "rb"))
-            os.remove("/home/rdvl/Proyectos/cat-detector/data/motion.jpeg")
+                await bot.send_photo(config.CHAT_ID, open("motion.jpeg", "rb"))
+            os.remove("motion.jpeg")
 
 # Response to commands introduced in chat.
 def start() -> None:
