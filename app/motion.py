@@ -20,7 +20,7 @@ def start():
             if cv2.contourArea(contour) < 900:
                 continue
             cv2.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 2)
-            cv2.putText(frame1, "Status: {}".format('Puma detectado!'), (10, 20), cv2.FONT_HERSHEY_COMPLEX_SMALL,
+            cv2.putText(frame1, "Status: {}".format('Gati detectado!'), (10, 20), cv2.FONT_HERSHEY_COMPLEX_SMALL,
                        1, (255, 0, 0), 3)
 
             if counter == 100:
@@ -35,7 +35,7 @@ def start():
 
         #cv.imshow("Video", frame1)
         frame1 = frame2
-        ret, frame2 = motionCam.cap.read()
+        ret, frame2 = motionCam.readCap()
 
         if cv2.waitKey(50) == 27:
             break

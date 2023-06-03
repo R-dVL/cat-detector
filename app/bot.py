@@ -11,7 +11,7 @@ bot = telegram.Bot(config.BOT_TOKEN)
 helpMsg = '''
 Hola, soy PumuCam, Raúl me ha diseñado con las siguientes funciones:
 
-1. /foto, escribe este comando si quieres robarle un selfie al Puma desde la cámara 1.\n
+1. /foto, escribe este comando si quieres robarle un selfie al Puma desde la cámara\n
 
 2. Cuando detecte movimiento pasaré fotos del Pumardo.
 '''
@@ -50,6 +50,13 @@ async def file_check():
                 os.remove("photo.jpeg")
             except:
                 print("Error sending photo")
+
+async def send_message(text):
+    try:
+        async with bot:
+            await bot.send_message(config.CHAT_ID, text)
+    except:
+        print("Error sending message")
 
 # Response to commands introduced in chat.
 def start() -> None:
