@@ -13,22 +13,17 @@ Hola, soy PumuCam, Raúl me ha diseñado con las siguientes funciones:
 
 1. /foto, escribe este comando si quieres robarle un selfie al Puma desde la cámara 1.\n
 
-2. Si vas a esta dirección http://192.168.1.142:5000 me encontraras retransmitiendo en directo (si no estas en casa tendrás que activar la VPN).
-
-3. Cuando detecte movimiento pasaré fotos del Pumardo.
+2. Cuando detecte movimiento pasaré fotos del Pumardo.
 '''
-
-
 
 # Help command
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(helpMsg)
 
-# Command to take a photo and send it back
+# Command to take a photo
 async def foto(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    ret, frame = motionCam.cap.read()
-    motionCam.take_picture("foto.jpeg", frame)
-    await bot.send_photo(config.CHAT_ID, open("foto.jpeg", "rb"))
+    ret, frame = motionCam.readCap()
+    motionCam.take_picture("photo.jpeg", frame)
 
 # Unknown commands filter
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -37,11 +32,24 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 # Escaneo cíclico en búsqueda de la foto de movimiento
 async def file_check():
     while (True):
-        file_exists = os.path.exists("motion.jpeg")
-        if (file_exists):
-            async with bot:
-                await bot.send_photo(config.CHAT_ID, open("motion.jpeg", "rb"))
-            os.remove("motion.jpeg")
+        motion_exists = os.path.exists("motion.jpeg")
+        photo_exists = os.path.exists("photo.jpeg")
+
+        if (motion_exists):
+            try:
+                async with bot:
+                    await bot.send_photo(config.CHAT_ID, open("motion.jpeg", "rb"))
+                os.remove("motion.jpeg")
+            except:
+                print("Error sending photo")
+
+        elif (photo_exists):
+            try:
+                async with bot:
+                    await bot.send_photo(config.CHAT_ID, open("photo.jpeg", "rb"))
+                os.remove("photo.jpeg")
+            except:
+                print("Error sending photo")
 
 # Response to commands introduced in chat.
 def start() -> None:

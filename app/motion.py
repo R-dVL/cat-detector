@@ -2,8 +2,8 @@ import cv2
 from camera import motionCam
 
 def start():
-    ret, frame1 = motionCam.cap.read()
-    ret, frame2 = motionCam.cap.read()
+    ret, frame1 = motionCam.readCap()
+    ret, frame2 = motionCam.readCap()
     counter = 0
 
     while motionCam.cap.isOpened():
