@@ -9,4 +9,7 @@ class Camera:
     def take_picture(self, path, img):
         cv2.imwrite(path, img)
 
+    def readCap(self):
+        return self.cap.read()
+
 motionCam = Camera("Motion", 0)
