@@ -30,5 +30,4 @@ fileCheckerThread = Thread_2(2, "File Checker", 2)
 if __name__ == "__main__":
     motionThread.start()
     fileCheckerThread.start()
-    bot.send_message("GatiCam arrancando motores...")
     bot.start()
