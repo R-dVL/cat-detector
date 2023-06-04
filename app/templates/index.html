@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GatiCam</title>
+  </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8  offset-lg-2">
+                    <h1 class="titulo">Pumardo en directo</h2>
+                    <img src="{{ url_for('video_feed') }}" class="center">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

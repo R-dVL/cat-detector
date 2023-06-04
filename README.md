@@ -7,7 +7,7 @@ Motion detector with Telegram controls and notifications used to spy on my cats 
 - Docker
 
 ### Webcam
-Any webcam recognized by the computer will work.
+Any webcam recognized by the computer will work, it is streamed in 0.0.0.0:8888
 ### Telegram bot
 To control and receive notifications, you will need to create a Telegram bot (using ___Botfather___ bot in Telegram for example https://t.me/botfather).
 ### Chat ID
