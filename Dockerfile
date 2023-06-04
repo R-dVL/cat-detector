@@ -12,5 +12,7 @@ COPY requirements.txt app /app/
 WORKDIR /app
 # Intall dependencies
 RUN pip install -r requirements.txt
+# Expose flask port
+EXPOSE 8888
 # Start app
 CMD ["python3", "main.py"]
