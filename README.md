@@ -1,1 +1,1 @@
-# cat-detector
+# Cat Detector
