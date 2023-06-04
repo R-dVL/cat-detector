@@ -3,31 +3,34 @@ import bot
 import threading
 import asyncio
 
-class Thread_1(threading.Thread):
+# Motion detector Thread
+class motionDetectorThread(threading.Thread):
     def __init__(self, threadID, name, counter):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name
         self.counter = counter
-      
+
     def run(self):
         motion.start()
-      
-motionThread = Thread_1(1, "Motion Detector", 1)
 
-class Thread_2(threading.Thread):
+motionThread_1 = motionDetectorThread(1, "Motion Detector", 1)
+
+# File check thread
+class fileCheckThread(threading.Thread):
     def __init__(self, threadID, name, counter):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name
         self.counter = counter
-      
+
     def run(self):
-        asyncio.run(bot.file_check())
-      
-fileCheckerThread = Thread_2(2, "File Checker", 2)
+        asyncio.run(bot.fileCheck())
+
+fileCheckerThread_1 = fileCheckThread(2, "File Check", 2)
 
 if __name__ == "__main__":
-    motionThread.start()
-    fileCheckerThread.start()
+    motionThread_1.start()
+    fileCheckerThread_1.start()
+    # Not using a separated thread for bot polling since async gave me some problems with it
     bot.start()

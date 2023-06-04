@@ -23,3 +23,21 @@ Once the image is pulled, just can start it with:
 ~~~bash
 docker run -e BOT_TOKEN=YOUR_BOT_TOKEN -e CHAT_ID=YOUR_CHAT_ID cat-detector:latest
 ~~~
+---
+>Or with docker-compose, cloning this repo:
+>~~~bash
+>git clone https://github.com/R-dVL/cat-detector.git
+>~~~
+>Write your CHAT_ID and BOT_TOKEN in docker-compose.yml:
+>~~~yml
+>services:
+>   cat-detector:
+>       image: cat-detector:latest
+>       environment:
+>           - CHAT_ID=YOUR_CHAT_ID
+>           - BOT_TOKEN=YOUR_BOT_TOKEN
+>~~~
+>And runing it:
+>~~~bash
+>docker-compose up
+>~~~
