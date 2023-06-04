@@ -1,16 +1,16 @@
 FROM python:latest
-#Env variables
+# Env variables
 ENV BOT_TOKEN=YOUR_BOT_TOKEN
 ENV CHAT_ID=YOUR_CHAT_ID
-#Dependencias de OpenCV
+# OpenCv dependencies
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
-#Crear directorios
+# Create folder
 RUN mkdir /app
-#Copiar archivos
-COPY requirements.txt /app/
-COPY app /app/
+# Copy code and requirements
+COPY requirements.txt app /app/
+# Define working directory
 WORKDIR /app
-#Instalar dependencias
+# Intall dependencies
 RUN pip install -r requirements.txt
-#Arrancar app
-ENTRYPOINT ["python3", "main.py"]
+# Start app
+CMD ["python3", "main.py"]
