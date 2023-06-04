@@ -1,6 +1,6 @@
 services:
   cat-detector:
-    image: cat-detector:test
+    image: cat-detector:latest
     environment:
       - CHAT_ID=YOUR_BOT_TOKEN
       - BOT_TOKEN=YOUR_CHAT_ID
