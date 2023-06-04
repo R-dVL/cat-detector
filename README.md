@@ -15,12 +15,20 @@ You don't want other people to be monitoring and viewing your cats' photos, so y
 ### Docker
 Application is built for amd64 architecture (working in arm64 build for RPi).
 
+Pull the image from Docker hub:
+~~~bash
+docker pull rdvlima/cat-detector:latest
+~~~
 Once the image is pulled, just can start it with:
 ~~~bash
 docker run cat-detector "YOUR_BOT_TOKEN" "YOUR_CHAT_ID"
 ~~~
 
-It can also be started cloning the repository, installing the dependencies (requirements.txt) and start it with:
-~~~bash
-python3 main.py "YOUR_BOT_TOKEN" "YOUR_CHAT_ID"
-~~~
+> It can also be started cloning the repository:
+> ~~~bash
+> git clone https://github.com/R-dVL/cat-detector.git
+> ~~~
+> And installing the dependencies (requirements.txt) and start it with:
+> ~~~bash
+> python3 main.py "YOUR_BOT_TOKEN" "YOUR_CHAT_ID"
+> ~~~
