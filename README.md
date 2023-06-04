@@ -21,14 +21,5 @@ docker pull rdvlima/cat-detector:latest
 ~~~
 Once the image is pulled, just can start it with:
 ~~~bash
-docker run cat-detector "YOUR_BOT_TOKEN" "YOUR_CHAT_ID"
+docker run -e BOT_TOKEN=YOUR_BOT_TOKEN -e CHAT_ID=YOUR_CHAT_ID cat-detector:latest
 ~~~
-
-> It can also be started cloning the repository:
-> ~~~bash
-> git clone https://github.com/R-dVL/cat-detector.git
-> ~~~
-> And installing the dependencies (requirements.txt) and start it with:
-> ~~~bash
-> python3 main.py "YOUR_BOT_TOKEN" "YOUR_CHAT_ID"
-> ~~~
