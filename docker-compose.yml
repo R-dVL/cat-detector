@@ -1,9 +1,9 @@
 services:
   cat-detector:
-    image: cat-detector:stream
+    image: cat-detector:latest
     environment:
-      - CHAT_ID=
-      - BOT_TOKEN=
+      - CHAT_ID=YOUR_CHAT_ID
+      - BOT_TOKEN=YOUR_BOT_TOKEN
     stop_signal: SIGINT
     ports:
       - '8888:8888'
