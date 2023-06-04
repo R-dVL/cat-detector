@@ -1,15 +1,14 @@
-import config
 import os
 from camera import motionCam
 import telegram
 from telegram import Update
 from telegram.ext import CommandHandler, Application, CommandHandler, ContextTypes, MessageHandler, filters
 
-bot = telegram.Bot(config.BOT_TOKEN)
+bot = telegram.Bot(os.getenv('BOT_TOKEN'))
 
 # Help message
 helpMsg = '''
-Hola, soy PumuCam, Raúl me ha diseñado con las siguientes funciones:
+Hola, soy GatiCam, Raúl me ha diseñado con las siguientes funciones:
 
 1. /foto, escribe este comando si quieres robarle un selfie al Puma desde la cámara\n
 
@@ -38,7 +37,7 @@ async def file_check():
         if (motion_exists):
             try:
                 async with bot:
-                    await bot.send_photo(config.CHAT_ID, open("motion.jpeg", "rb"))
+                    await bot.send_photo(os.getenv('CHAT_ID'), open("motion.jpeg", "rb"))
                 os.remove("motion.jpeg")
             except:
                 print("Error sending photo")
@@ -46,21 +45,14 @@ async def file_check():
         elif (photo_exists):
             try:
                 async with bot:
-                    await bot.send_photo(config.CHAT_ID, open("photo.jpeg", "rb"))
+                    await bot.send_photo(os.getenv('CHAT_ID'), open("photo.jpeg", "rb"))
                 os.remove("photo.jpeg")
             except:
                 print("Error sending photo")
 
-async def send_message(text):
-    try:
-        async with bot:
-            await bot.send_message(config.CHAT_ID, text)
-    except:
-        print("Error sending message")
-
 # Response to commands introduced in chat.
 def start() -> None:
-    application = Application.builder().token(config.BOT_TOKEN).build()
+    application = Application.builder().token(os.getenv('BOT_TOKEN')).build()
     application.add_handler(CommandHandler("help", help))
     application.add_handler(CommandHandler("foto", foto))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, unknown))

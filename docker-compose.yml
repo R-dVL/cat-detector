@@ -1,0 +1,6 @@
+services:
+  cat-detector:
+    image: cat-detector:test
+    environment:
+      - CHAT_ID=null
+      - BOT_TOKEN=5572530259:null
