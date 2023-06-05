@@ -17,7 +17,7 @@ Application is built for amd64 architecture (working in arm64 build for RPi).
 
 Pull the image from Docker hub:
 ~~~bash
-docker pull rdvlima/cat-detector:latest
+docker pull ghcr.io/r-dvl/cat-detector:latest
 ~~~
 Once the image is pulled, just can start it with:
 ~~~bash
