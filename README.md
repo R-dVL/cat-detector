@@ -17,7 +17,7 @@ Pull the image from Docker hub:
 ~~~bash
 docker pull ghcr.io/r-dvl/cat-detector:latest
 ~~~
-Once the image is pulled, just can start it with:
+Once the image is pulled, just start it with:
 ~~~bash
 docker run -e BOT_TOKEN=YOUR_BOT_TOKEN -e CHAT_ID=YOUR_CHAT_ID ghcr.io/r-dvl/cat-detector:latest
 ~~~
