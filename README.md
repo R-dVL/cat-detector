@@ -22,4 +22,4 @@ Once the image is pulled, just start it with:
 docker run -e BOT_TOKEN=YOUR_BOT_TOKEN -e CHAT_ID=YOUR_CHAT_ID ghcr.io/r-dvl/cat-detector:latest
 ~~~
 And now enjoy watching them destroy your home.
-<img src="https://i.gyazo.com/fd2e902c259fb6a44b80e83b58c6c787.jpg" alt="Crazy cats detected" width="200" height="400" />
+<img src="https://i.gyazo.com/fd2e902c259fb6a44b80e83b58c6c787.jpg" alt="Crazy cats detected" width="350" height="500" />
