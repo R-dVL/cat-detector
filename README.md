@@ -13,11 +13,7 @@ To control and receive notifications, you will need to create a Telegram bot (us
 ### Chat ID
 You don't want other people to be monitoring and viewing your cats' photos, so you'll need to create a chat on Telegram, add your bot and get the ___chat ID___ (there are many bots in Telegram that returns your ___chat ID___ like https://telegram.im/@rawdatabot).
 ### Docker
-Pull the image from Docker hub:
-~~~bash
-docker pull ghcr.io/r-dvl/cat-detector:latest
-~~~
-Once the image is pulled, just start it with:
+Just run the image with:
 ~~~bash
 docker run -e BOT_TOKEN=YOUR_BOT_TOKEN -e CHAT_ID=YOUR_CHAT_ID ghcr.io/r-dvl/cat-detector:latest
 ~~~
