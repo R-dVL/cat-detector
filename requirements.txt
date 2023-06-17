@@ -1,3 +1,4 @@
 opencv-python
 python-telegram-bot
-flask
+django
+django-bootstrap5
