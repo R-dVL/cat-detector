@@ -22,7 +22,7 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 # Command to take a photo
 async def foto(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    ret, frame = motionCam.readCap()
+    ret, frame = motionCam.getVideo()
     motionCam.takePhoto("photo.jpeg", frame)
 
 # Unknown commands filter

@@ -1,13 +1,40 @@
 import cv2
-from camera import motionCam
 
-# Motion detection loop, it works comparing pixel differences between frame1 and frame2
-def start():
-    ret, frame1 = motionCam.readCap()
-    ret, frame2 = motionCam.readCap()
+class Camera:
+    # Constructor, id will define what camera is selected
+    def __init__(self, name, id):
+        self.name = name
+        self.id = id
+        self.video = cv2.VideoCapture(self.id)
+
+    def __del__(self):
+        self.video.release()
+
+    def getFrame(self):
+        success, frame = self.video.read()
+        ret, jpeg = cv2.imencode('.jpg', frame)
+        return jpeg.tobytes()
+
+    # Saves actual frame
+    def takePhoto(self, path, img):
+        cv2.imwrite(path, img)
+
+    # Returns camera capture read
+    def getVideo(self):
+        return self.video.read()
+
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+def motionDetector(camera):
+    ret, frame1 = camera.getVideo()
+    ret, frame2 = camera.getVideo()
     counter = 0
 
-    while motionCam.cap.isOpened():
+    while camera.video.isOpened():
         diff = cv2.absdiff(frame1, frame2)
         diff_gray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
         blur = cv2.GaussianBlur(diff_gray, (5, 5), 0)
@@ -32,7 +59,7 @@ def start():
 
             # To discard fake motion detection, it waits 100 iterations before taking a picture
             if counter == 100:
-                motionCam.takePhoto("motion.jpeg", frame1)
+                camera.takePhoto("motion.jpeg", frame1)
                 counter += 1
             elif counter > 100:
                 counter = 0
@@ -43,10 +70,12 @@ def start():
         # cv.drawContours(frame1, contours, -1, (0, 255, 0), 2)
 
         frame1 = frame2
-        ret, frame2 = motionCam.readCap()
+        ret, frame2 = camera.getVideo()
 
         if cv2.waitKey(50) == 27:
             break
 
-    motionCam.cap.release()
+    camera.video.release()
     cv2.destroyAllWindows()
+
+motionCam = Camera("Motion Camera", 0)
