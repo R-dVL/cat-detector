@@ -77,5 +77,3 @@ def motionDetector(camera):
 
     camera.video.release()
     cv2.destroyAllWindows()
-
-motionCam = Camera("Motion Camera", 0)
