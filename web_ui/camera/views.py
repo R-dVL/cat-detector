@@ -5,7 +5,7 @@ from django.http import StreamingHttpResponse
 
 # Create your views here.
 def home(request):
-    return render(request, 'stream/home.html')
+    return render(request, 'camera/home.html')
 
 @gzip.gzip_page
 def stream(request):
@@ -16,4 +16,7 @@ def stream(request):
         pass
 
 def stream(request, *args, **kwargs):
-    return render(request, 'stream/stream.html')
+    return render(request, 'camera/stream.html')
+
+def settings(request):
+    return render(request, 'camera/settings.html')
