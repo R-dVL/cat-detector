@@ -10,7 +10,7 @@ def home(request):
 @gzip.gzip_page
 def stream(request):
     try:
-        cam = Camera()
+        cam = Camera('test', 0)
         return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
     except:  # This is bad!
         pass
