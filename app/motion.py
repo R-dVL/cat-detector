@@ -24,11 +24,11 @@ def start():
                 continue
 
             # Draw motion rectangle
-            cv2.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 2)
+            # cv2.rectangle(frame1, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
             # Text in image when something is detected
-            cv2.putText(frame1, "Status: {}".format('Gati detectado!'), (10, 20), cv2.FONT_HERSHEY_COMPLEX_SMALL,
-                       1, (255, 0, 0), 3)
+            # cv2.putText(frame1, "Status: {}".format('Gati detectado!'), (10, 20), cv2.FONT_HERSHEY_COMPLEX_SMALL,
+                       # 1, (255, 0, 0), 3)
 
             # To discard fake motion detection, it waits 100 iterations before taking a picture
             if counter == 100:
